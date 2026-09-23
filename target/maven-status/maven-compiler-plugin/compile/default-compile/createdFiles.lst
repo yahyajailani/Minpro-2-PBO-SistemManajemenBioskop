@@ -1,0 +1,8 @@
+Model\Tiket.class
+Model\Studio.class
+Main\Main.class
+Model\Admin.class
+Model\Film.class
+Model\Pengguna.class
+Model\Transaksi.class
+Model\Penonton.class

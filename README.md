@@ -1,3 +1,7 @@
+### Nama : Yahya Jailani
+### NIM : 2509116085
+### Kelas : C
+
 # Sistem Manajemen Bioskop
 
 ## Deskripsi Program
@@ -99,7 +103,6 @@ Penonton yang belum mempunyai akun dapat melakukan registrasi dengan mengisi:
 
 * Nama
 * Email
-* Nomor HP
 * Password
 
 Setiap data akan divalidasi sebelum disimpan.
@@ -123,11 +126,10 @@ Setelah melakukan registrasi, penonton dapat login menggunakan email dan passwor
 Jika berhasil, penonton akan masuk ke menu:
 
 ```text
-1. Lihat Profil
-2. Lihat Film
-3. Lihat Studio
-4. Beli Tiket
-5. Riwayat Transaksi
+1. Lihat Film
+2. Lihat Studio
+3. Beli Tiket
+4. Riwayat Transaksi
 0. Logout
 ```
 
@@ -239,7 +241,6 @@ Atribut umum seperti:
 ```java
 nama
 email
-noHP
 ```
 
 diletakkan pada class `Pengguna`.
@@ -363,7 +364,6 @@ Program memiliki beberapa fitur utama:
 * Tambahan harga VIP Rp10.000
 * Validasi nama
 * Validasi email
-* Validasi nomor HP
 * Validasi password
 * Validasi angka
 * Validasi pilihan menu
@@ -379,7 +379,7 @@ Program memiliki beberapa fitur utama:
 ### Validasi Nama
 
 ```text
-Nama : Yahya123
+Nama : Yahya Jailani
 ```
 
 Output:
@@ -398,18 +398,6 @@ Output:
 
 ```text
 Format email tidak valid.
-```
-
-### Validasi Nomor HP
-
-```text
-No HP : 08abc123
-```
-
-Output:
-
-```text
-No HP harus berupa angka 10-13 digit.
 ```
 
 ### Validasi Harga

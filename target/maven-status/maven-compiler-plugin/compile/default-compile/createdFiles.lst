@@ -1,8 +1,10 @@
 Model\Tiket.class
 Model\Studio.class
+View\BioskopView.class
 Main\Main.class
 Model\Admin.class
 Model\Film.class
+Controller\BioskopController.class
 Model\Pengguna.class
 Model\Transaksi.class
 Model\Penonton.class

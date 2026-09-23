@@ -4,16 +4,18 @@
 
 package Main;
 
-import Model.Pengguna;
+import Controller.BioskopController;
 
 /**
  *
  * @author ADVAN
  */
-
 public class Main {
 
     public static void main(String[] args) {
-        Pengguna.jalankan();
+
+        BioskopController controller = new BioskopController();
+
+        controller.jalankan();
     }
 }

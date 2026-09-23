@@ -13,45 +13,31 @@ import java.util.Scanner;
  */
 public class Tiket {
 
-    private String idTiket;
-    private Penonton penonton;
+    private String pembeli;
     private Film film;
     private Studio studio;
     private int jumlah;
-    private double harga;
-    private double totalHarga;
+
+    private static ArrayList<Tiket> daftarTiket = new ArrayList<>();
 
     public Tiket(
-            String idTiket,
-            Penonton penonton,
+            String pembeli,
             Film film,
             Studio studio,
             int jumlah) {
 
-        this.idTiket = idTiket;
-        this.penonton = penonton;
+        this.pembeli = pembeli;
         this.film = film;
         this.studio = studio;
         this.jumlah = jumlah;
-        this.harga = film.getHarga();
-
-        hitungTotal();
     }
 
-    public String getIdTiket() {
-        return idTiket;
+    public String getPembeli() {
+        return pembeli;
     }
 
-    public void setIdTiket(String idTiket) {
-        this.idTiket = idTiket;
-    }
-
-    public Penonton getPenonton() {
-        return penonton;
-    }
-
-    public void setPenonton(Penonton penonton) {
-        this.penonton = penonton;
+    public void setPembeli(String pembeli) {
+        this.pembeli = pembeli;
     }
 
     public Film getFilm() {
@@ -59,11 +45,7 @@ public class Tiket {
     }
 
     public void setFilm(Film film) {
-
         this.film = film;
-        this.harga = film.getHarga();
-
-        hitungTotal();
     }
 
     public Studio getStudio() {
@@ -79,569 +61,50 @@ public class Tiket {
     }
 
     public void setJumlah(int jumlah) {
-
         this.jumlah = jumlah;
-
-        hitungTotal();
     }
 
     public double getHarga() {
+
+        double harga = film.getHarga();
+
+        if (studio.getTipe().equalsIgnoreCase("VIP")) {
+            harga += 10000;
+        }
+
         return harga;
     }
 
     public double getTotalHarga() {
-        return totalHarga;
+
+        return jumlah * getHarga();
     }
 
-    private void hitungTotal() {
-        totalHarga = harga * jumlah;
+    public static ArrayList<Tiket> getDaftarTiket() {
+        return daftarTiket;
     }
 
-    private static String generateId(
-            ArrayList<Tiket> daftarTiket) {
-
-        int nomor = daftarTiket.size() + 1;
-        String id;
-
-        do {
-
-            id = String.format(
-                    "TKT%03d",
-                    nomor
-            );
-
-            nomor++;
-
-        } while (adaId(daftarTiket, id));
-
-        return id;
-    }
-
-    private static boolean adaId(
-            ArrayList<Tiket> daftarTiket,
-            String id) {
-
-        for (Tiket tiket : daftarTiket) {
-
-            if (tiket.getIdTiket()
-                    .equalsIgnoreCase(id)) {
-
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    public static void beliUntukPenonton(
-            Scanner input,
-            Penonton penonton,
-            ArrayList<Film> daftarFilm,
-            ArrayList<Studio> daftarStudio,
-            ArrayList<Tiket> daftarTiket,
-            ArrayList<Transaksi> daftarTransaksi) {
-
-        if (daftarFilm.isEmpty()) {
-
-            System.out.println(
-                    "Belum ada film."
-            );
-
-            return;
-        }
-
-        if (daftarStudio.isEmpty()) {
-
-            System.out.println(
-                    "Belum ada studio."
-            );
-
-            return;
-        }
-
-        System.out.println("\n==================================");
-        System.out.println("            BELI TIKET");
-        System.out.println("==================================");
-
-        System.out.println(
-                "Penonton : " + penonton.getNama()
-        );
-
-        Film.lihat(daftarFilm);
-
-        int pilihFilm = Pengguna.inputAngka(
-                input,
-                "\nPilih film : ",
-                1,
-                daftarFilm.size()
-        );
-
-        Film film = daftarFilm.get(
-                pilihFilm - 1
-        );
-
-        Studio.lihat(daftarStudio);
-
-        int pilihStudio = Pengguna.inputAngka(
-                input,
-                "\nPilih studio : ",
-                1,
-                daftarStudio.size()
-        );
-
-        Studio studio = daftarStudio.get(
-                pilihStudio - 1
-        );
-
-        int jumlah = Pengguna.inputAngka(
-                input,
-                "Jumlah tiket : ",
-                1,
-                studio.getKapasitas()
-        );
-
-        String idTiket = generateId(
-                daftarTiket
-        );
-
-        Tiket tiket = new Tiket(
-                idTiket,
-                penonton,
-                film,
-                studio,
-                jumlah
-        );
-
+    public static void tambah(Tiket tiket) {
         daftarTiket.add(tiket);
-
-        String idTransaksi = String.format(
-                "TRX%03d",
-                daftarTransaksi.size() + 1
-        );
-
-        Transaksi transaksi = new Transaksi(
-                idTransaksi,
-                penonton,
-                tiket
-        );
-
-        daftarTransaksi.add(transaksi);
-
-        Pengguna.loading(
-                "Memproses pembelian"
-        );
-
-        System.out.println("\nTiket berhasil dibeli.");
-        System.out.println(
-                "ID Tiket    : " + tiket.getIdTiket()
-        );
-        System.out.println(
-                "Film        : "
-                + tiket.getFilm().getJudul()
-        );
-        System.out.println(
-                "Studio      : "
-                + tiket.getStudio().getNama()
-        );
-        System.out.println(
-                "Jumlah      : " + tiket.getJumlah()
-        );
-        System.out.println(
-                "Total Harga : Rp"
-                + tiket.getTotalHarga()
-        );
     }
 
-    public static void tambah(
-            Scanner input,
-            ArrayList<Penonton> daftarPenonton,
-            ArrayList<Film> daftarFilm,
-            ArrayList<Studio> daftarStudio,
-            ArrayList<Tiket> daftarTiket,
-            ArrayList<Transaksi> daftarTransaksi) {
-
-        if (daftarPenonton.isEmpty()
-                || daftarFilm.isEmpty()
-                || daftarStudio.isEmpty()) {
-
-            System.out.println(
-                    "Data penonton, film, atau studio "
-                    + "belum tersedia."
-            );
-
-            return;
-        }
-
-        System.out.println("\n=== TAMBAH TIKET ===");
-
-        System.out.println("\nDAFTAR PENONTON");
-        Penonton.lihat(daftarPenonton);
-
-        int pilihPenonton = Pengguna.inputAngka(
-                input,
-                "\nPilih penonton : ",
-                1,
-                daftarPenonton.size()
-        );
-
-        Penonton penonton =
-                daftarPenonton.get(
-                        pilihPenonton - 1
-                );
-
-        System.out.println("\nDAFTAR FILM");
-        Film.lihat(daftarFilm);
-
-        int pilihFilm = Pengguna.inputAngka(
-                input,
-                "\nPilih film : ",
-                1,
-                daftarFilm.size()
-        );
-
-        Film film =
-                daftarFilm.get(
-                        pilihFilm - 1
-                );
-
-        System.out.println("\nDAFTAR STUDIO");
-        Studio.lihat(daftarStudio);
-
-        int pilihStudio = Pengguna.inputAngka(
-                input,
-                "\nPilih studio : ",
-                1,
-                daftarStudio.size()
-        );
-
-        Studio studio =
-                daftarStudio.get(
-                        pilihStudio - 1
-                );
-
-        int jumlah = Pengguna.inputAngka(
-                input,
-                "Jumlah tiket : ",
-                1,
-                studio.getKapasitas()
-        );
-
-        String idTiket =
-                generateId(daftarTiket);
-
-        Tiket tiket = new Tiket(
-                idTiket,
-                penonton,
-                film,
-                studio,
-                jumlah
-        );
-
-        daftarTiket.add(tiket);
-
-        String idTransaksi = String.format(
-                "TRX%03d",
-                daftarTransaksi.size() + 1
-        );
-
-        daftarTransaksi.add(
-                new Transaksi(
-                        idTransaksi,
-                        penonton,
-                        tiket
-                )
-        );
-
-        System.out.println(
-                "Tiket berhasil ditambahkan."
-        );
+    public static void update(int index, Tiket tiket) {
+        daftarTiket.set(index, tiket);
     }
 
-    public static void lihat(
-            ArrayList<Tiket> daftarTiket) {
-
-        System.out.println("\n==================================");
-        System.out.println("            DAFTAR TIKET");
-        System.out.println("==================================");
-
-        if (daftarTiket.isEmpty()) {
-
-            System.out.println(
-                    "Belum ada tiket."
-            );
-
-            return;
-        }
-
-        for (int i = 0; i < daftarTiket.size(); i++) {
-
-            Tiket tiket = daftarTiket.get(i);
-
-            System.out.println(
-                    "\nTiket ke-" + (i + 1)
-            );
-
-            System.out.println(
-                    "ID Tiket    : "
-                    + tiket.getIdTiket()
-            );
-
-            System.out.println(
-                    "Penonton    : "
-                    + tiket.getPenonton().getNama()
-            );
-
-            System.out.println(
-                    "Film        : "
-                    + tiket.getFilm().getJudul()
-            );
-
-            System.out.println(
-                    "Studio      : "
-                    + tiket.getStudio().getNama()
-            );
-
-            System.out.println(
-                    "Jumlah      : "
-                    + tiket.getJumlah()
-            );
-
-            System.out.println(
-                    "Harga       : Rp"
-                    + tiket.getHarga()
-            );
-
-            System.out.println(
-                    "Total Harga : Rp"
-                    + tiket.getTotalHarga()
-            );
-        }
+    public static void hapus(int index) {
+        daftarTiket.remove(index);
     }
 
-    public static void lihatTiketPenonton(
-            ArrayList<Tiket> daftarTiket,
-            Penonton penonton) {
+    @Override
+    public String toString() {
 
-        System.out.println("\n==================================");
-        System.out.println("           TIKET SAYA");
-        System.out.println("==================================");
-
-        boolean ada = false;
-
-        for (Tiket tiket : daftarTiket) {
-
-            if (tiket.getPenonton() == penonton) {
-
-                ada = true;
-
-                System.out.println(
-                        "\nID Tiket    : "
-                        + tiket.getIdTiket()
-                );
-
-                System.out.println(
-                        "Film        : "
-                        + tiket.getFilm().getJudul()
-                );
-
-                System.out.println(
-                        "Studio      : "
-                        + tiket.getStudio().getNama()
-                );
-
-                System.out.println(
-                        "Jumlah      : "
-                        + tiket.getJumlah()
-                );
-
-                System.out.println(
-                        "Total Harga : Rp"
-                        + tiket.getTotalHarga()
-                );
-            }
-        }
-
-        if (!ada) {
-
-            System.out.println(
-                    "Belum memiliki tiket."
-            );
-        }
-    }
-
-    public static void ubah(
-            Scanner input,
-            ArrayList<Tiket> daftarTiket,
-            ArrayList<Film> daftarFilm,
-            ArrayList<Studio> daftarStudio) {
-
-        if (daftarTiket.isEmpty()) {
-
-            System.out.println(
-                    "Belum ada tiket."
-            );
-
-            return;
-        }
-
-        lihat(daftarTiket);
-
-        int pilih = Pengguna.inputAngka(
-                input,
-                "\nPilih tiket : ",
-                1,
-                daftarTiket.size()
-        );
-
-        Tiket tiket = daftarTiket.get(
-                pilih - 1
-        );
-
-        Film.lihat(daftarFilm);
-
-        int pilihFilm = Pengguna.inputAngka(
-                input,
-                "\nPilih film baru : ",
-                1,
-                daftarFilm.size()
-        );
-
-        Film film = daftarFilm.get(
-                pilihFilm - 1
-        );
-
-        Studio.lihat(daftarStudio);
-
-        int pilihStudio = Pengguna.inputAngka(
-                input,
-                "\nPilih studio baru : ",
-                1,
-                daftarStudio.size()
-        );
-
-        Studio studio = daftarStudio.get(
-                pilihStudio - 1
-        );
-
-        int jumlah = Pengguna.inputAngka(
-                input,
-                "Jumlah tiket baru : ",
-                1,
-                studio.getKapasitas()
-        );
-
-        tiket.setFilm(film);
-        tiket.setStudio(studio);
-        tiket.setJumlah(jumlah);
-
-        System.out.println(
-                "Tiket berhasil diubah."
-        );
-    }
-
-    public static void hapus(
-            Scanner input,
-            ArrayList<Tiket> daftarTiket,
-            ArrayList<Transaksi> daftarTransaksi) {
-
-        if (daftarTiket.isEmpty()) {
-
-            System.out.println(
-                    "Belum ada tiket."
-            );
-
-            return;
-        }
-
-        lihat(daftarTiket);
-
-        int pilih = Pengguna.inputAngka(
-                input,
-                "\nPilih tiket : ",
-                1,
-                daftarTiket.size()
-        );
-
-        Tiket tiket = daftarTiket.get(
-                pilih - 1
-        );
-
-        daftarTransaksi.removeIf(
-                transaksi ->
-                        transaksi.getTiket() == tiket
-        );
-
-        daftarTiket.remove(tiket);
-
-        System.out.println(
-                "Tiket berhasil dihapus."
-        );
-    }
-
-    public static void menuAdmin(
-            Scanner input,
-            ArrayList<Penonton> daftarPenonton,
-            ArrayList<Film> daftarFilm,
-            ArrayList<Studio> daftarStudio,
-            ArrayList<Tiket> daftarTiket,
-            ArrayList<Transaksi> daftarTransaksi) {
-
-        int pilihan;
-
-        do {
-
-            System.out.println("\n==================================");
-            System.out.println("           KELOLA TIKET");
-            System.out.println("==================================");
-            System.out.println("1. Tambah Tiket");
-            System.out.println("2. Lihat Tiket");
-            System.out.println("3. Ubah Tiket");
-            System.out.println("4. Hapus Tiket");
-            System.out.println("0. Kembali");
-            System.out.println("==================================");
-
-            pilihan = Pengguna.inputAngka(
-                    input,
-                    "Pilih menu : ",
-                    0,
-                    4
-            );
-
-            switch (pilihan) {
-
-                case 1:
-                    tambah(
-                            input,
-                            daftarPenonton,
-                            daftarFilm,
-                            daftarStudio,
-                            daftarTiket,
-                            daftarTransaksi
-                    );
-                    break;
-
-                case 2:
-                    lihat(daftarTiket);
-                    break;
-
-                case 3:
-                    ubah(
-                            input,
-                            daftarTiket,
-                            daftarFilm,
-                            daftarStudio
-                    );
-                    break;
-
-                case 4:
-                    hapus(
-                            input,
-                            daftarTiket,
-                            daftarTransaksi
-                    );
-                    break;
-            }
-
-        } while (pilihan != 0);
+        return "Pembeli      : " + pembeli
+                + "\nFilm         : " + film.getJudul()
+                + "\nStudio       : " + studio.getNama()
+                + "\nTipe Studio  : " + studio.getTipe()
+                + "\nHarga Tiket  : Rp" + getHarga()
+                + "\nJumlah Tiket : " + jumlah
+                + "\nTotal Harga  : Rp" + getTotalHarga();
     }
 }

@@ -18,10 +18,9 @@ public class Admin extends Pengguna {
     public Admin(
             String nama,
             String email,
-            String noHP,
             String password) {
 
-        super(nama, email, noHP);
+        super(nama, email);
         this.password = password;
     }
 
@@ -49,7 +48,6 @@ public class Admin extends Pengguna {
 
         return "Nama  : " + getNama()
                 + "\nEmail : " + getEmail()
-                + "\nNo HP : " + getNoHP()
                 + "\nRole  : " + getRole();
     }
 }

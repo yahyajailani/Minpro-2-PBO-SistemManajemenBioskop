@@ -19,10 +19,9 @@ public class Penonton extends Pengguna {
     public Penonton(
             String nama,
             String email,
-            String noHP,
             String password) {
 
-        super(nama, email, noHP);
+        super(nama, email);
         this.password = password;
     }
 
@@ -50,7 +49,6 @@ public class Penonton extends Pengguna {
 
         return "Nama  : " + getNama()
                 + "\nEmail : " + getEmail()
-                + "\nNo HP : " + getNoHP()
                 + "\nRole  : " + getRole();
     }
 }

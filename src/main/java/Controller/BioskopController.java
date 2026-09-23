@@ -32,7 +32,6 @@ public class BioskopController {
         admin = new Admin(
                 "Admin",
                 "Cinematter@gmail.com",
-                "081229596016",
                 "Cinematter33"
         );
 
@@ -201,9 +200,6 @@ public class BioskopController {
         String email =
                 view.bacaEmail("Email : ");
 
-        String noHP =
-                view.bacaNoHP("No HP : ");
-
         String password =
                 view.bacaPassword("Password : ");
 
@@ -224,7 +220,6 @@ public class BioskopController {
                 new Penonton(
                         nama,
                         email,
-                        noHP,
                         password
                 );
 
@@ -299,22 +294,18 @@ public class BioskopController {
             switch (pilihan) {
 
                 case 1:
-                    lihatProfil(penonton);
-                    break;
-
-                case 2:
                     lihatFilm();
                     break;
 
-                case 3:
+                case 2:
                     lihatStudio();
                     break;
 
-                case 4:
+                case 3:
                     beliTiket(penonton);
                     break;
 
-                case 5:
+                case 4:
                     lihatTransaksiPenonton(
                             penonton
                     );
@@ -1055,9 +1046,6 @@ public class BioskopController {
         String email =
                 view.bacaEmail("Email : ");
 
-        String noHP =
-                view.bacaNoHP("No HP : ");
-
         String password =
                 view.bacaPassword("Password : ");
 
@@ -1078,7 +1066,6 @@ public class BioskopController {
                 new Penonton(
                         nama,
                         email,
-                        noHP,
                         password
                 );
 
@@ -1156,11 +1143,6 @@ public class BioskopController {
                         "Email baru : "
                 );
 
-        String noHP =
-                view.bacaNoHP(
-                        "No HP baru : "
-                );
-
         String password =
                 view.bacaPassword(
                         "Password baru : "
@@ -1185,7 +1167,6 @@ public class BioskopController {
 
         penonton.setNama(nama);
         penonton.setEmail(email);
-        penonton.setNoHP(noHP);
         penonton.setPassword(password);
 
         view.pesan(

@@ -94,25 +94,6 @@ public class BioskopView {
         }
     }
 
-    public String bacaNoHP(String pesan) {
-
-        while (true) {
-
-            String noHP = bacaString(pesan);
-
-            if (noHP.matches("[0-9]+")
-                    && noHP.length() >= 10
-                    && noHP.length() <= 13) {
-
-                return noHP;
-            }
-
-            System.out.println(
-                    "No HP harus berupa angka 10-13 digit."
-            );
-        }
-    }
-
     public String bacaPassword(String pesan) {
 
         while (true) {
@@ -310,17 +291,16 @@ public class BioskopView {
 
     public int menuPenonton() {
 
-        System.out.println("\n1. Lihat Profil");
-        System.out.println("2. Lihat Film");
-        System.out.println("3. Lihat Studio");
-        System.out.println("4. Beli Tiket");
-        System.out.println("5. Riwayat Transaksi");
+        System.out.println("1. Lihat Film");
+        System.out.println("2. Lihat Studio");
+        System.out.println("3. Beli Tiket");
+        System.out.println("4. Riwayat Transaksi");
         System.out.println("0. Logout");
 
         return bacaPilihan(
                 "Pilih menu: ",
                 0,
-                5
+                4
         );
     }
 

@@ -15,12 +15,10 @@ public abstract class Pengguna {
 
     private String nama;
     private String email;
-    private String noHP;
 
-    public Pengguna(String nama, String email, String noHP) {
+    public Pengguna(String nama, String email) {
         this.nama = nama;
         this.email = email;
-        this.noHP = noHP;
     }
 
     public String getNama() {
@@ -37,14 +35,6 @@ public abstract class Pengguna {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getNoHP() {
-        return noHP;
-    }
-
-    public void setNoHP(String noHP) {
-        this.noHP = noHP;
     }
 
     public abstract String getRole();

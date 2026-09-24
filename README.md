@@ -51,6 +51,7 @@ src/main/java/com/mycompany/pertemuan1pbo/
 └── view/
     └── BioskopView.java
 ```
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/791d75a5-9727-44f8-88cd-3f317d6ff112" />
 
 Struktur tersebut membagi program menjadi bagian **Model, View, dan Controller** sehingga setiap bagian memiliki fungsi masing-masing.
 
@@ -62,12 +63,8 @@ Struktur tersebut membagi program menjadi bagian **Model, View, dan Controller**
 
 Saat program dijalankan, pengguna akan melihat menu:
 
-```text
-1. Login Admin
-2. Login Penonton
-3. Daftar Penonton
-0. Keluar
-```
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/82ba7e53-211f-4436-9f46-4784da969d3b" />
+
 
 Pengguna dapat memilih sesuai dengan kebutuhan.
 
@@ -77,21 +74,13 @@ Pengguna dapat memilih sesuai dengan kebutuhan.
 
 Admin dapat login menggunakan akun bawaan:
 
-```text
-Email    : admin@cinematter.com
-Password : admin123
-```
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/d9670ba6-af2e-46fe-bd2a-598290efe0cf" />
+
 
 Jika login berhasil, Admin masuk ke menu Admin.
 
-```text
-1. Data Film
-2. Data Studio
-3. Data Tiket
-4. Data Penonton
-5. Riwayat Transaksi
-0. Logout
-```
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/efdae180-cc28-4bec-8c34-646545513fcd" />
+
 
 Admin dapat melakukan CRUD pada data yang tersedia.
 
@@ -109,9 +98,8 @@ Setiap data akan divalidasi sebelum disimpan.
 
 Contohnya:
 
-```text
-Nama : Yahya123
-```
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/61b56af0-383f-45c7-89bb-c22e6d8e69d6" />
+
 
 akan ditolak karena nama hanya boleh berisi huruf dan spasi.
 
@@ -125,13 +113,7 @@ Setelah melakukan registrasi, penonton dapat login menggunakan email dan passwor
 
 Jika berhasil, penonton akan masuk ke menu:
 
-```text
-1. Lihat Film
-2. Lihat Studio
-3. Beli Tiket
-4. Riwayat Transaksi
-0. Logout
-```
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/9984cbd5-10f5-492a-ba6d-d1db1e7c6128" />
 
 ---
 
@@ -162,6 +144,8 @@ maka harga tiket:
 ```text
 Rp50.000
 ```
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/90bd4837-b94b-466f-9b7d-a17830f2593d" />
+
 
 Sedangkan jika memilih:
 
@@ -174,10 +158,12 @@ maka sistem otomatis menghitung:
 ```text
 Rp50.000 + Rp10.000 = Rp60.000
 ```
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/012189ad-88b9-4c21-a1c4-c81a0c75e426" />
+
 
 Jika jumlah tiket melebihi kapasitas studio, transaksi akan ditolak.
 
-Setelah berhasil, sistem membuat ID transaksi dan menyimpan data transaksi ke dalam `ArrayList`.
+Setelah berhasil, sistem membuat ID transaksi dan menyimpan data transaksi ke dalam 'ArrayList'.
 
 ---
 
@@ -189,26 +175,14 @@ Encapsulation diterapkan dengan menggunakan atribut `private` pada class.
 
 Contohnya pada class `Film`:
 
-```java
-private String judul;
-private String genre;
-private int durasi;
-private double harga;
-```
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/b971e4c1-10a8-4fcd-85e2-0eb9be7c5389" />
+
 
 Atribut tersebut tidak dapat diakses secara langsung dari class lain. Untuk mengakses atau mengubah data digunakan getter dan setter.
 
 Contohnya:
 
-```java
-public String getJudul() {
-    return judul;
-}
 
-public void setJudul(String judul) {
-    this.judul = judul;
-}
-```
 
 Konsep ini juga diterapkan pada class seperti `Pengguna`, `Admin`, `Penonton`, `Studio`, `Tiket`, dan `Transaksi`.
 
@@ -222,19 +196,18 @@ Inheritance diterapkan pada hubungan antara class `Pengguna`, `Admin`, dan `Peno
 
 `Pengguna` digunakan sebagai class induk:
 
-```java
-public abstract class Pengguna
-```
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/ab620993-dddd-4a71-8dea-399b89ec333c" />
+
 
 Kemudian `Admin` dan `Penonton` mewarisi class tersebut:
 
-```java
-public class Admin extends Pengguna
-```
+### Admin
+---
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/daeb3c55-c3ae-4892-8977-f8148dd51217" />
 
-```java
-public class Penonton extends Pengguna
-```
+### Penonton
+---
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/34477df9-a693-4087-b727-e62dfbe0ea4a" />
 
 Atribut umum seperti:
 
@@ -249,7 +222,7 @@ Dengan inheritance, class `Admin` dan `Penonton` dapat menggunakan atribut dan m
 
 ---
 
-# Nilai Tambah Program
+# Nilai Tambah
 
 ## 1. MVC (Model View Controller)
 
@@ -261,21 +234,15 @@ Model digunakan untuk menyimpan data dan objek program.
 
 Contohnya:
 
-* `Pengguna`
-* `Admin`
-* `Penonton`
-* `Film`
-* `Studio`
-* `Tiket`
-* `Transaksi`
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/4d1d7499-281d-4a93-96c3-8369bb746560" />
+
 
 ### View
 
 View terdapat pada:
 
-```text
-BioskopView.java
-```
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/4effdbcc-981d-4de6-a68a-5d1c33b0b846" />
+
 
 View bertugas menangani tampilan program dan input dari pengguna, seperti menu, input data, serta validasi input.
 
@@ -283,9 +250,8 @@ View bertugas menangani tampilan program dan input dari pengguna, seperti menu, 
 
 Controller terdapat pada:
 
-```text
-BioskopController.java
-```
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/04207fba-0ee5-468d-8b9c-a9d636bbb0d3" />
+
 
 Controller bertugas mengatur alur program dan menghubungkan View dengan Model.
 
@@ -301,27 +267,18 @@ Polymorphism diterapkan melalui **method overriding**.
 
 Pada class `Pengguna` terdapat method:
 
-```java
-public abstract String getRole();
-```
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/23da0de7-6927-49d4-bf0c-725ba3cceab1" />
+
 
 Method tersebut kemudian dioverride oleh class `Admin`:
 
-```java
-@Override
-public String getRole() {
-    return "Admin";
-}
-```
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/2441f08c-addc-4563-8b70-d9975e88ca37" />
+
 
 Sedangkan pada class `Penonton`:
 
-```java
-@Override
-public String getRole() {
-    return "Penonton";
-}
-```
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/95921afd-4487-4202-8b73-a6754e7cdabd" />
+
 
 Nama method yang digunakan sama, yaitu `getRole()`, tetapi hasilnya berbeda berdasarkan class yang mengimplementasikannya.
 

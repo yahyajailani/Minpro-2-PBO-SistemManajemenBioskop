@@ -344,18 +344,22 @@ Output:
 ```text
 Nama hanya boleh berisi huruf dan spasi.
 ```
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/c52c1094-581c-46a5-88ef-36c35bbd1cd6" />
+
 
 ### Validasi Email
 
 ```text
-Email : yahya@gmail
+Email : yahyagmail.com
 ```
 
 Output:
 
 ```text
 Format email tidak valid.
+Contoh : nama@gmail.com
 ```
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/78c25e7c-f94a-4338-94a9-aabe6328b570" />
 
 ### Validasi Harga
 
@@ -368,6 +372,7 @@ Output:
 ```text
 Harga harus berupa angka.
 ```
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/6073d178-ae52-40f6-bd59-92df9049dd92" />
 
 ### Validasi Tipe Studio
 
@@ -387,6 +392,7 @@ Tipe studio yang diperbolehkan:
 Regular
 VIP
 ```
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/f7fbba15-8654-43ac-bd89-9b7b746c6a2f" />
 
 ### Validasi Kapasitas Tiket
 
@@ -395,18 +401,6 @@ Jika kapasitas studio adalah 100 orang:
 ```text
 Jumlah tiket : 101
 ```
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/fbcafa59-0322-485e-9779-8b5ff164ec49" />
 
 maka sistem akan menolak karena jumlah tiket melebihi kapasitas studio.
-
----
-
-# Kesimpulan
-
-Sistem Manajemen Bioskop merupakan program Java yang menerapkan konsep dasar Pemrograman Berorientasi Objek dalam sebuah sistem pengelolaan bioskop.
-
-Konsep **Encapsulation** diterapkan melalui penggunaan atribut `private` dan getter/setter. **Inheritance** diterapkan melalui class `Pengguna` sebagai induk dari `Admin` dan `Penonton`. **Polymorphism** diterapkan melalui method overriding seperti `getRole()` dan `toString()`.
-
-Selain konsep OOP, program juga menggunakan struktur **MVC**, CRUD, `ArrayList`, validasi input, login dan registrasi, pembelian tiket, perhitungan harga otomatis, serta riwayat transaksi.
-
-Struktur tersebut membuat program lebih terorganisir dan setiap bagian memiliki fungsi yang jelas.
-
